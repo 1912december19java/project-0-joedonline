@@ -1,6 +1,6 @@
 package com.revature;
 
-public interface DAOViewBalance {
+public interface DAOAccountQueries{
 
 	Double viewBalance(Integer id);
 	

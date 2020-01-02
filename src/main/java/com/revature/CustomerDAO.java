@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class CustomerDAO implements DataAccessObject, DAOViewBalance {
+public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 
 	Connection connection;
 	
