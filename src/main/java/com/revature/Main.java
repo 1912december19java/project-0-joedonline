@@ -86,6 +86,10 @@ public class Main {
 			Double amountAfterWithdraw = customerDAO.withdrawMoney(21, withdrawAmount);
 			System.out.println("[NEW BALANCE] $" + amountAfterWithdraw);
 			
+			Double depositAmount = 100.50;
+			Double amountAfterDeposit = customerDAO.depositMoney(21, depositAmount);
+			System.out.println("[DEPOSIT] " + depositAmount + " ==> New Balance: " + amountAfterDeposit);
+			
 			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
 		} catch (SQLException e) {
 			e.printStackTrace();

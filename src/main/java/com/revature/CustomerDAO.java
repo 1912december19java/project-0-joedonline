@@ -17,6 +17,14 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	}
 	
 	@Override
+	public Double depositMoney(Integer id, Double amount) {
+		Double balance = this.viewBalance(id);
+		balance += amount;
+		balance = this.updateBalance(id, balance);
+		return balance;
+	}
+	
+	@Override
 	public Double withdrawMoney(Integer id, Double amount) {
 		Double balance = this.viewBalance(id);
 		balance -= amount;
@@ -144,10 +152,12 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 		return balance;
 		
 	}
-	
+
 	@Override
 	public String toString() {
-		return "CustomerDAO [connection=" + connection + ", size()=" + size() + "]";
+		return "CustomerDAO [connection=" + connection + ", size()=" + size() + ", findAll()=" + findAll()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 	
 }
