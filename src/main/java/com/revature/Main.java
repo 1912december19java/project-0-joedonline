@@ -14,34 +14,13 @@ public class Main {
 	/*
 	 * USER STORIES:
 	 * 
-	 * [in progress...] "As a user I can login and logout."
-	 * [ ] "As a user I can view my balance."
-	 * [ ] "As a user I can withdraw money."
-	 * [ ] "As a user I can deposit money."
-	 * [ ] "As a user I can register."
+	 * [COMPLETED] "As a user I can login and logout."
+	 * [COMPLETED] "As a user I can view my balance."
+	 * [COMPLETED] "As a user I can withdraw money."
+	 * [COMPLETED] "As a user I can deposit money."
+	 * [ In progress... ] "As a user I can register."
 	 * [ ] (optional) "As a user I can view all my transactions."
 	 * [ ] (optional) "As a user I can transfer money from my account to another account."
-	 */
-	
-	/*
-	 * FIELDS:
-	 * { Customers: customer_id, firstName, lastName, city, state, balance }
-	 * { Users: userName, password }
-	 * { Transactions: customer_id, transactionType, amount, date }
-	 */
-
-	/*
-	 * "As a user I can login and logout."
-	 * 
-	 * { State :: fields }
-	 * - userName
-	 * - password
-	 * - sanitized
-	 * 
-	 * { Behavior :: methods }
-	 * - loginRequest()
-	 * - isLoggedIn()
-	 * - logoutRequest()
 	 */
 	
 	public static void main(String[] args) {
@@ -62,7 +41,7 @@ public class Main {
 			
 			Properties customerProps = new Properties();
 			customerProps.put("firstName", "Mickey");
-			customerProps.put("lastName", "Mickey");
+			customerProps.put("lastName", "Mouse");
 			customerProps.put("city", "Orlando");
 			customerProps.put("state", "Florida");
 //			customerDAO.addNew(customerProps);
@@ -91,6 +70,27 @@ public class Main {
 //			System.out.println("[DEPOSIT] " + depositAmount + " ==> New Balance: " + amountAfterDeposit);
 			
 			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
+			
+			System.out.println();
+			
+			UserDAO userDAO = new UserDAO(connection);
+			Integer userIdMickeyMouse = customerDAO.getCustomerId("Minnie", "Mouse", "Orlando", "Florida");
+			System.out.println("[getCustomerId] " + userIdMickeyMouse);
+			
+			String username = "mickeymouse";
+			String password = "password1";
+			String email = "mickey.mouse@disneymail.fake";
+			Integer registerStatus = userDAO.registerUser(username, password, email, userIdMickeyMouse);
+			switch (registerStatus) { 
+			case 200 :
+				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION SUCCESSFUL");
+				break;
+			case 400 :
+				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION FAILED");
+				break;
+			default :
+				System.out.println("User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

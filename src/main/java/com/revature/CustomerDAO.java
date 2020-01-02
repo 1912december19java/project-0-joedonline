@@ -8,12 +8,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
 public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 
 	Connection connection;
 	
 	public CustomerDAO(Connection connection) {
 		this.connection = connection;
+	}
+	
+	@Override
+	public Integer getCustomerId(String firstName, String lastName, String city, String state) {
+		Integer id = 0;
+		
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_USER_ID())) {
+			statement.setString(1, firstName);
+			statement.setString(2, lastName);
+			statement.setString(3, city);
+			statement.setString(4, state);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				id = resultSet.getInt(1);
+			}
+			System.out.println(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
 	}
 	
 	@Override
@@ -109,9 +131,13 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	}
 	
 	public Customer lookup(Integer id) {
-		return this.findAll().get(id);
+		try {
+			return this.findAll().get(id);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
-
+	
 	public List<Customer> findAll() {
 		List<Customer> customers = new ArrayList<Customer>();
 //		Map<Integer, Customer> customers = new HashMap<Integer, Customer>(); 
@@ -134,7 +160,7 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 		
 		return customers;
 	}
-
+	
 	@Override
 	public Double viewBalance(Integer id) {
 		Double balance = 0.0;
@@ -152,7 +178,7 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 		return balance;
 		
 	}
-
+	
 	@Override
 	public String toString() {
 		return "CustomerDAO [connection=" + connection + ", size()=" + size() + ", findAll()=" + findAll()

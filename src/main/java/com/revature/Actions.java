@@ -36,6 +36,14 @@ public final class Actions {
 		return "UPDATE customers SET balance = " + newBalance + " WHERE customer_id = " + id;
 	}
 	
+	static String GET_USER_ID() {
+		return "SELECT customer_id FROM customers "
+				+ "WHERE firstname = ? "
+				+ "AND lastname = ? "
+				+ "AND city = ? "
+				+ "AND state = ?"; 
+	}
+	
 	/*
 	 * Users Actions
 	 */
