@@ -76,7 +76,7 @@ public class Main {
 			updateProps.put("city", "Orlando");
 			updateProps.put("state", "Florida");
 			updateProps.put("balance", balance);
-			customerDAO.update(updateProps);
+//			customerDAO.update(updateProps);
 			
 			System.out.println(customerDAO.viewBalance(21));
 			System.out.println(customerDAO.size());

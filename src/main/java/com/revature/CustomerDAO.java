@@ -110,18 +110,14 @@ public class CustomerDAO implements DataAccessObject, DAOViewBalance {
 
 	@Override
 	public Double viewBalance(Integer id) {
-		
-		Customer customer = new Customer();
 		Double balance = 0.0;
 		
 		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(id))) {
 			ResultSet resultSet = statement.executeQuery();
+			Customer c = new Customer();
 			while (resultSet.next()) {
-//				statement.setDouble(1, resultSet.getDouble(id));
-//				statement.execute();
-				
+				balance = resultSet.getDouble(1);
 			}
-			System.out.println(balance);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
