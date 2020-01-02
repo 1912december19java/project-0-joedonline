@@ -51,4 +51,8 @@ public final class Actions {
 		return "INSERT INTO users (username, pw, emailaddress, customer_id) VALUES (?, ?, ?, " + id + ")";
 	}
 	
+	static String DELETE_USER(Integer id) {
+		return "DELETE FROM users WHERE customer_id = " + id;
+	}
+	
 }

@@ -7,7 +7,16 @@ create table customers (
 	balance NUMERIC (12, 2)
 );
 
-DROP TABLE customers
+create table customers (
+	customer_id INTEGER NOT NULL PRIMARY KEY,
+	firstname VARCHAR(50) NOT NULL,
+	lastname VARCHAR(50) NOT NULL,
+	city VARCHAR(50) NOT NULL,
+	state VARCHAR(50) NOT NULL,
+	balance NUMERIC (12, 2) NOT NULL
+);
+
+DROP TABLE customers;
 
 SELECT * FROM customers;
 
@@ -28,13 +37,41 @@ UPDATE customers SET firstname = 'Minnie' WHERE customer_id = 21;
 
 UPDATE customers SET balance = 999.33 WHERE customer_id = 21;
 
-create table users (
-	username VARCHAR(50),
-	password VARCHAR(128),
-	customer_id PRIMARY KEY
-);
+SELECT customer_id FROM customers WHERE firstname = 'Mickey' AND lastname = 'Mouse' AND city = 'Orlando' AND state = 'Florida';
 
 SELECT * FROM customers;
+
+create table users (
+	username VARCHAR(50),
+	pw VARCHAR(128),
+	emailaddress VARCHAR(256),
+	customer_id INTEGER PRIMARY KEY
+);
+
+DROP TABLE users;
+
+INSERT INTO users (username, pw, emailaddress, customer_id) VALUES ('mickeymouse', 'password', 'mickey.mouse@disneyemail.fake', 21);
+
+DELETE FROM users WHERE customer_id = 21;
+
+SELECT * FROM users;
+
+create table transactions (
+	transaction_id INTEGER NOT NULL PRIMARY KEY,
+	account_type VARCHAR (32) NOT NULL,
+	transaction_date DATE NOT NULL,
+	transaction_time TIME NOT NULL,
+	customer_id INTEGER NOT NULL
+);
+
+INSERT INTO transactions (transaction_id, account_type, transaction_date, transaction_time, customer_id)
+	VALUES (1000, 'checking', '12/25/2019', '15:31:22', 100);
+
+DELETE FROM transactions WHERE transaction_id = 1000;
+
+DROP TABLE transactions;
+
+SELECT * FROM transactions;
 
 insert into customers (customer_id, firstname, lastname, city, state, balance) values (1, 'Alvy', 'Normand', 'San Antonio', 'Texas', 500.99);
 insert into customers (customer_id, firstname, lastname, city, state, balance) values (2, 'Ronni', 'Swatten', 'Arlington', 'Texas', 120.50);

@@ -44,18 +44,19 @@ public class Main {
 			customerProps.put("lastName", "Mouse");
 			customerProps.put("city", "Orlando");
 			customerProps.put("state", "Florida");
-//			customerDAO.addNew(customerProps);
+			customerDAO.addNew(customerProps);
 			
 //			customerDAO.delete(22, "Minnie");
-			Properties updateProps = new Properties();
-			Double balance = 210.21;
-			updateProps.put("customer_id", 21);
-			updateProps.put("firstname", "Mickey");
-			updateProps.put("lastname", "Mouse");
-			updateProps.put("city", "Orlando");
-			updateProps.put("state", "Florida");
-			updateProps.put("balance", balance);
-//			customerDAO.update(updateProps);
+			
+//			Properties updateProps = new Properties();
+//			Double balance = 210.21;
+//			updateProps.put("customer_id", 21);
+//			updateProps.put("firstname", "Mickey");
+//			updateProps.put("lastname", "Mouse");
+//			updateProps.put("city", "Orlando");
+//			updateProps.put("state", "Florida");
+//			updateProps.put("balance", balance);
+////			customerDAO.update(updateProps);
 			
 			System.out.println("[VIEW BALANCE] ==> " + customerDAO.viewBalance(21));
 			
@@ -69,28 +70,28 @@ public class Main {
 //			Double amountAfterDeposit = customerDAO.depositMoney(21, depositAmount);
 //			System.out.println("[DEPOSIT] " + depositAmount + " ==> New Balance: " + amountAfterDeposit);
 			
-			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
-			
-			System.out.println();
-			
-			UserDAO userDAO = new UserDAO(connection);
-			Integer userIdMickeyMouse = customerDAO.getCustomerId("Minnie", "Mouse", "Orlando", "Florida");
-			System.out.println("[getCustomerId] " + userIdMickeyMouse);
-			
-			String username = "mickeymouse";
-			String password = "password1";
-			String email = "mickey.mouse@disneymail.fake";
-			Integer registerStatus = userDAO.registerUser(username, password, email, userIdMickeyMouse);
-			switch (registerStatus) { 
-			case 200 :
-				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION SUCCESSFUL");
-				break;
-			case 400 :
-				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION FAILED");
-				break;
-			default :
-				System.out.println("User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
-			}
+//			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
+//			
+//			System.out.println();
+//			
+//			UserDAO userDAO = new UserDAO(connection);
+//			Integer userIdMickeyMouse = customerDAO.getCustomerId("Minnie", "Mouse", "Orlando", "Florida");
+//			System.out.println("[getCustomerId] " + userIdMickeyMouse);
+//			
+//			String username = "mickeymouse";
+//			String password = "password1";
+//			String email = "mickey.mouse@disneymail.fake";
+//			Integer registerStatus = userDAO.registerUser(username, password, email, userIdMickeyMouse);
+//			switch (registerStatus) { 
+//			case 200 :
+//				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION SUCCESSFUL");
+//				break;
+//			case 400 :
+//				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION FAILED");
+//				break;
+//			default :
+//				System.out.println("User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
+//			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

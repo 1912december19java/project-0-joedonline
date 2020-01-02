@@ -2,6 +2,7 @@ package com.revature;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO implements DAOUsers {
@@ -35,6 +36,17 @@ public class UserDAO implements DAOUsers {
 		}
 		
 		return status;
+	}
+	
+	@Override
+	public void deleteUser(Integer id) {
+		if (this.userExists(id)) {
+			try (PreparedStatement statement = this.connection.prepareStatement(Actions.DELETE_USER(id))) {
+				statement.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
