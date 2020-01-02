@@ -5,7 +5,7 @@ import java.util.Properties;
 public interface DAOCreateUpdateDelete {
 
 	void update(Properties props);
-	void delete(Integer id, String str);
+	void delete(String id, String str);
 	void addNew(Properties props);
 	Integer size();
 	

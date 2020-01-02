@@ -4,20 +4,20 @@ import java.util.Properties;
 
 public final class Actions {
 
-	static String INSERT() {
-		String fields = "customer_id, firstname, lastname, city, state, balance";
-		return "INSERT INTO customers (" + fields + ") VALUES (?, ?, ?, ?, ?, ?)";
+	static String ADD_NEW_CUSTOMER() {
+		String fields = "customer_id, firstname, lastname, city, state";
+		return "INSERT INTO customers (" + fields + ") VALUES (?, ?, ?, ?, ?)";
 	}
 	
 	static String UPDATE(Properties props) {
 		return "UPDATE customers SET firstname = ?, lastname = ?, city = ?, state = ?, balance = ? WHERE customer_id = ?;";
 	}
 	
-	static String DELETE() {
+	static String DELETE_CUSTOMER() {
 		return "DELETE FROM customers WHERE customer_id = ? AND firstname = ?";
 	}
 	
-	static String COUNT() {
+	static String COUNT_CUSTOMERS() {
 		return "SELECT COUNT(*) from customers";
 	}
 	
@@ -28,6 +28,18 @@ public final class Actions {
 	/*
 	 * Account Actions
 	 */
+	static String ADD_NEW_ACCOUNT() {
+		return "INSERT INTO accounts (account_type, balance, customer_id)  VALUES (?, ?, ?)";
+	}
+	
+	static String DELETE_ACCOUNT(String customer_id) {
+		return "DELETE FROM accounts WHERE customer_id = " + customer_id;
+	}
+	
+	static String COUNT_ACCOUNTS() {
+		return "SELECT COUNT(*) FROM accounts";
+	}
+	
 	static String GET_BALANCE(Integer id) {
 		return "SELECT balance FROM customers WHERE customer_id = " + id;
 	}

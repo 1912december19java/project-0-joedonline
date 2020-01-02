@@ -1,20 +1,19 @@
 create table customers (
-	customer_id SERIAL PRIMARY KEY,
+	customer_id VARCHAR (9) UNIQUE PRIMARY KEY,
 	firstname VARCHAR(50),
 	lastname VARCHAR(50),
 	city VARCHAR(50),
-	state VARCHAR(50),
-	balance NUMERIC (12, 2)
+	state VARCHAR(50)
 );
 
-create table customers (
-	customer_id INTEGER NOT NULL PRIMARY KEY,
-	firstname VARCHAR(50) NOT NULL,
-	lastname VARCHAR(50) NOT NULL,
-	city VARCHAR(50) NOT NULL,
-	state VARCHAR(50) NOT NULL,
-	balance NUMERIC (12, 2) NOT NULL
-);
+-- create table customers (
+	--customer_id INTEGER NOT NULL PRIMARY KEY,
+	--firstname VARCHAR(50) NOT NULL,
+	--lastname VARCHAR(50) NOT NULL,
+	--city VARCHAR(50) NOT NULL,
+	--state VARCHAR(50) NOT NULL,
+	--balance NUMERIC (12, 2) NOT NULL
+--);
 
 DROP TABLE customers;
 
@@ -41,11 +40,23 @@ SELECT customer_id FROM customers WHERE firstname = 'Mickey' AND lastname = 'Mou
 
 SELECT * FROM customers;
 
+create table accounts (
+	account_type VARCHAR(50),
+	balance NUMERIC (12, 2),
+	customer_id VARCHAR (9)
+);
+
+INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('checking', 200.00, 'CID-10000');
+
+DROP TABLE accounts;
+
+SELECT * FROM accounts;
+
 create table users (
 	username VARCHAR(50),
 	pw VARCHAR(128),
 	emailaddress VARCHAR(256),
-	customer_id INTEGER PRIMARY KEY
+	customer_id VARCHAR (9)
 );
 
 DROP TABLE users;
@@ -61,7 +72,7 @@ create table transactions (
 	account_type VARCHAR (32) NOT NULL,
 	transaction_date DATE NOT NULL,
 	transaction_time TIME NOT NULL,
-	customer_id INTEGER NOT NULL
+	customer_id VARCHAR (9) NOT NULL
 );
 
 INSERT INTO transactions (transaction_id, account_type, transaction_date, transaction_time, customer_id)

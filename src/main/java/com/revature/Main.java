@@ -35,16 +35,24 @@ public class Main {
 			Connection connection = connectionManager.getConnection();
 			CustomerDAO customerDAO = new CustomerDAO(connection);
 			
+			
+			AccountDAO accountDAO = new AccountDAO(connection);
+			Properties accountProps = new Properties();
+			accountProps.put("accountType", "checking");
+			accountProps.put("customerId", "CID-10002");
+			accountDAO.addNew(accountProps);
+			
+			
 //			customerDAO.findAll().forEach(System.out::println);
 			
-			System.out.println(customerDAO.lookup(0));
+//			System.out.println(customerDAO.lookup(0));
 			
-			Properties customerProps = new Properties();
-			customerProps.put("firstName", "Mickey");
-			customerProps.put("lastName", "Mouse");
-			customerProps.put("city", "Orlando");
-			customerProps.put("state", "Florida");
-			customerDAO.addNew(customerProps);
+//			Properties customerProps = new Properties();
+//			customerProps.put("firstName", "Mickey");
+//			customerProps.put("lastName", "Mouse");
+//			customerProps.put("city", "Orlando");
+//			customerProps.put("state", "Florida");
+//			customerDAO.addNew(customerProps);
 			
 //			customerDAO.delete(22, "Minnie");
 			
@@ -57,8 +65,6 @@ public class Main {
 //			updateProps.put("state", "Florida");
 //			updateProps.put("balance", balance);
 ////			customerDAO.update(updateProps);
-			
-			System.out.println("[VIEW BALANCE] ==> " + customerDAO.viewBalance(21));
 			
 //			Double withdrawAmount = 200.50;
 //			System.out.println("[WITHDRAWING] $" + withdrawAmount + " ==> New Balance: $" + customerDAO.withdrawMoney(21, withdrawAmount));

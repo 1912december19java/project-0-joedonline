@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 
-public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
+public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 
 	Connection connection;
 	
@@ -38,32 +38,6 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 		return id;
 	}
 	
-	@Override
-	public Double depositMoney(Integer id, Double amount) {
-		Double balance = this.viewBalance(id);
-		balance += amount;
-		balance = this.updateBalance(id, balance);
-		return balance;
-	}
-	
-	@Override
-	public Double withdrawMoney(Integer id, Double amount) {
-		Double balance = this.viewBalance(id);
-		balance -= amount;
-		balance = this.updateBalance(id, balance);
-		return balance;
-	}
-
-	@Override
-	public Double updateBalance(Integer id, Double newBalance) {
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(id, newBalance))) {
-			statement.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return this.viewBalance(id);
-	}
 	
 	@Override
 	public void update(Properties props) {
@@ -84,18 +58,17 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	}
 
 	public void addNew(Properties props) {
-		Integer customerId = this.size() + 1;
+		Integer customerId = this.size() + 1; // REPLACE WITH RANDOM GENERATOR
 		String firstName = props.getProperty("firstName");
 		String lastName = props.getProperty("lastName");
 		String city = props.getProperty("city");
 		String state = props.getProperty("state");
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.INSERT())) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.ADD_NEW_CUSTOMER())) {
 			statement.setInt(1, customerId);
 			statement.setString(2, firstName);
 			statement.setString(3, lastName);
 			statement.setString(4, city);
 			statement.setString(5, state);
-			statement.setDouble(6, 0.0);
 			statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,10 +76,10 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	}
 
 	@Override
-	public void delete(Integer id, String str) {
-		try(PreparedStatement statement = this.connection.prepareStatement(Actions.DELETE());){
-            statement.setInt(1, id);
-            statement.setString(2, str);
+	public void delete(String customerId, String firstName) {
+		try(PreparedStatement statement = this.connection.prepareStatement(Actions.DELETE_CUSTOMER())){
+            statement.setString(1, customerId);
+            statement.setString(2, firstName);
             statement.execute();
         }catch (SQLException e){
             e.printStackTrace();
@@ -118,7 +91,7 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	public Integer size() {
 		Integer size = 0;
 		
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.COUNT())) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.COUNT_CUSTOMERS())) {
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				size = resultSet.getInt(1);
@@ -159,24 +132,6 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 		}
 		
 		return customers;
-	}
-	
-	@Override
-	public Double viewBalance(Integer id) {
-		Double balance = 0.0;
-		
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(id))) {
-			ResultSet resultSet = statement.executeQuery();
-			Customer c = new Customer();
-			while (resultSet.next()) {
-				balance = resultSet.getDouble(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return balance;
-		
 	}
 	
 	@Override
