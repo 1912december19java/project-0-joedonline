@@ -17,6 +17,25 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOAccountQueries {
 	}
 	
 	@Override
+	public Double withdrawMoney(Integer id, Double amount) {
+		Double balance = this.viewBalance(id);
+		balance -= amount;
+		balance = this.updateBalance(id, balance);
+		return balance;
+	}
+
+	@Override
+	public Double updateBalance(Integer id, Double newBalance) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(id, newBalance))) {
+			statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return this.viewBalance(id);
+	}
+	
+	@Override
 	public void update(Properties props) {
 //		System.out.println("VALUES: " + props.values().toArray()[4]);
 		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE(props))) {

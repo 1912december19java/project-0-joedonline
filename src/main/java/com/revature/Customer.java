@@ -8,6 +8,7 @@ public class Customer {
 	private String city;
 	private String state;
 	private Double balance;
+	private String date;
 	
 	public Integer getCustomerId() {
 		return customerId;
@@ -57,10 +58,18 @@ public class Customer {
 		this.balance = balance;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", city="
-				+ city + ", state=" + state + ", balance=" + balance + "]";
+				+ city + ", state=" + state + ", balance=" + balance + ", date=" + date + "]";
 	}
 	
 }

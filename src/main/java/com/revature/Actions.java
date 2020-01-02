@@ -32,4 +32,8 @@ public final class Actions {
 		return "SELECT balance FROM customers WHERE customer_id = " + id;
 	}
 	
+	static String UPDATE_BALANCE(Integer id, Double newBalance) {
+		return "UPDATE customers SET balance = " + newBalance + " WHERE customer_id = " + id;
+	}
+	
 }

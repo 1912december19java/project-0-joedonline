@@ -78,8 +78,15 @@ public class Main {
 			updateProps.put("balance", balance);
 //			customerDAO.update(updateProps);
 			
-			System.out.println(customerDAO.viewBalance(21));
-			System.out.println(customerDAO.size());
+			System.out.println("[VIEW BALANCE] ==> " + customerDAO.viewBalance(21));
+			
+			Double withdrawAmount = 200.50;
+			System.out.println("[WITHDRAWING] $" + withdrawAmount + " ==> New Balance: $" + customerDAO.withdrawMoney(21, withdrawAmount));
+			
+			Double amountAfterWithdraw = customerDAO.withdrawMoney(21, withdrawAmount);
+			System.out.println("[NEW BALANCE] $" + amountAfterWithdraw);
+			
+			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
