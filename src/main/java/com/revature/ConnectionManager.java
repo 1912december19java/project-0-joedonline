@@ -11,7 +11,6 @@ public class ConnectionManager {
 	private String username;
 	private String pw;
 	
-	private Properties props;
 	
 	public ConnectionManager(String host, String dbName, String username, String pw) {
 		System.out.println("[ConnectionManager] called.");
