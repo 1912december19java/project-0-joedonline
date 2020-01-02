@@ -25,4 +25,11 @@ public final class Actions {
 		return "SELECT * FROM customers";
 	}
 	
+	/*
+	 * Account Actions
+	 */
+	static String GET_BALANCE(Integer id) {
+		return "SELECT balance FROM customers WHERE customer_id = " + id;
+	}
+	
 }

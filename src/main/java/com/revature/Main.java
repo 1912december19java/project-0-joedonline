@@ -78,6 +78,7 @@ public class Main {
 			updateProps.put("balance", balance);
 			customerDAO.update(updateProps);
 			
+			System.out.println(customerDAO.viewBalance(21));
 			System.out.println(customerDAO.size());
 		} catch (SQLException e) {
 			e.printStackTrace();

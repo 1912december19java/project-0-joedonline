@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class CustomerDAO implements DataAccessObject {
+public class CustomerDAO implements DataAccessObject, DAOViewBalance {
 
 	Connection connection;
 	
@@ -108,6 +108,28 @@ public class CustomerDAO implements DataAccessObject {
 		return customers;
 	}
 
+	@Override
+	public Double viewBalance(Integer id) {
+		
+		Customer customer = new Customer();
+		Double balance = 0.0;
+		
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(id))) {
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+//				statement.setDouble(1, resultSet.getDouble(id));
+//				statement.execute();
+				
+			}
+			System.out.println(balance);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return balance;
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "CustomerDAO [connection=" + connection + ", size()=" + size() + "]";
