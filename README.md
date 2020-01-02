@@ -1,5 +1,7 @@
 # Banking Project
-
+project0banking
+postgres
+password
 ## Presentations (Monday ~ Wednesday of Week 3)
 * Presentations will start when QC team joins.
 
@@ -18,7 +20,7 @@
     start with a concrete implementation that return static data (a List with something for example) or use Serialization and persist data to a text file.
     * Once you learn JDBC and basics of SQL, you can create a new concrete implementation from that interface that you created and proceed to develop the actual data access code.
 * Make at least 2 JUnit test cases.
-    * Remember: a test case should involve more than one Test involving the same 
+    * Remember: a test case should involve more than one Test involving the same
     functionality, example: Authentication test case - Tests: Successful Login, Failed Login.
 * Use Log4j for error tracking and tracing.
 * Create at least 2 custom exceptions.
