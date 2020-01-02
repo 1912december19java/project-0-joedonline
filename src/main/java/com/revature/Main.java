@@ -80,15 +80,15 @@ public class Main {
 			
 			System.out.println("[VIEW BALANCE] ==> " + customerDAO.viewBalance(21));
 			
-			Double withdrawAmount = 200.50;
-			System.out.println("[WITHDRAWING] $" + withdrawAmount + " ==> New Balance: $" + customerDAO.withdrawMoney(21, withdrawAmount));
+//			Double withdrawAmount = 200.50;
+//			System.out.println("[WITHDRAWING] $" + withdrawAmount + " ==> New Balance: $" + customerDAO.withdrawMoney(21, withdrawAmount));
 			
-			Double amountAfterWithdraw = customerDAO.withdrawMoney(21, withdrawAmount);
-			System.out.println("[NEW BALANCE] $" + amountAfterWithdraw);
+//			Double amountAfterWithdraw = customerDAO.withdrawMoney(21, withdrawAmount);
+//			System.out.println("[NEW BALANCE] $" + amountAfterWithdraw);
 			
-			Double depositAmount = 100.50;
-			Double amountAfterDeposit = customerDAO.depositMoney(21, depositAmount);
-			System.out.println("[DEPOSIT] " + depositAmount + " ==> New Balance: " + amountAfterDeposit);
+//			Double depositAmount = 100.50;
+//			Double amountAfterDeposit = customerDAO.depositMoney(21, depositAmount);
+//			System.out.println("[DEPOSIT] " + depositAmount + " ==> New Balance: " + amountAfterDeposit);
 			
 			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
 		} catch (SQLException e) {

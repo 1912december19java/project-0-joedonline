@@ -26,6 +26,14 @@ DELETE FROM customers WHERE customer_id = 23;
 
 UPDATE customers SET firstname = 'Minnie' WHERE customer_id = 21;
 
+UPDATE customers SET balance = 999.33 WHERE customer_id = 21;
+
+create table users (
+	username VARCHAR(50),
+	password VARCHAR(128),
+	customer_id PRIMARY KEY
+);
+
 SELECT * FROM customers;
 
 insert into customers (customer_id, firstname, lastname, city, state, balance) values (1, 'Alvy', 'Normand', 'San Antonio', 'Texas', 500.99);

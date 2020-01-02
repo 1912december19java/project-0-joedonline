@@ -36,4 +36,11 @@ public final class Actions {
 		return "UPDATE customers SET balance = " + newBalance + " WHERE customer_id = " + id;
 	}
 	
+	/*
+	 * Users Actions
+	 */
+	static String REGISTER_USER(Integer id) {
+		return "INSERT INTO users (username, pw, emailaddress, customer_id) VALUES (?, ?, ?, " + id + ")";
+	}
+	
 }
