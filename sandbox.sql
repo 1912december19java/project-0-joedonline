@@ -44,17 +44,24 @@ SELECT * FROM customers;
 
 -- ACCOUNTS
 create table accounts (
+	account_id VARCHAR (10),
 	account_type VARCHAR(50),
 	balance NUMERIC (12, 2),
 	customer_id VARCHAR (9)
 );
 
-INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('checking', 200.02, 'CID-10001');
-INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('savings', 2255.26, 'CID-10001');
-INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('moneymarket', 951065.22, 'CID-10001');
+INSERT INTO accounts (account_id, account_type, balance, customer_id)  VALUES ('ACCT-10001', 'checking', 200.02, 'CID-10001');
+INSERT INTO accounts (account_id, account_type, balance, customer_id)  VALUES ('ACCT-10002', 'savings', 2255.26, 'CID-10001');
+INSERT INTO accounts (account_id, account_type, balance, customer_id)  VALUES ('ACCT-90111', 'moneymarket', 951065.22, 'CID-10001');
 DELETE FROM accounts WHERE customer_id = 'CID-10000';
+
+UPDATE accounts SET balance = 500.33 WHERE account_id = 'ACCT-10001';
+UPDATE accounts SET balance = 970765.22 WHERE account_id = 'ACCT-90111';
+
 UPDATE accounts SET balance = 500.33 WHERE customer_id = 'CID-10001';
 UPDATE accounts SET balance = 888.88 WHERE customer_id = 'CID-10002';
+
+SELECT * FROM accounts WHERE account_id = 'ACCT-88888';
 
 DROP TABLE accounts;
 

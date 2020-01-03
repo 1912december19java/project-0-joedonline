@@ -13,12 +13,13 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	public AccountDAO(Connection connection) {
 		this.connection = connection;
 	}
-
+	
+	// ACCOUNT MANAGEMENT
 	@Override
-	public Double viewBalance(String customerId) {
+	public Double viewBalance(String accountId) {
 		Double balance = 0.0;
 		
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(customerId))) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(accountId))) {
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				balance = resultSet.getDouble(1);
@@ -66,6 +67,25 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 		customerId = customerDAO.getCustomerId(firstName, lastName, city, state);
 		
 		return customerId;
+	}
+	
+	@Override
+	public Double transferMoney(String fromAccountId, String toAccountId, Double fromAccountIdAmount) {
+		
+		// GET { fromAccountIdBalance, toAccountIdBalance }
+		Double fromAccountIdBalance = this.viewBalance(fromAccountId);
+		Double toAccountIdBalance = this.viewBalance(toAccountId);
+		
+		// CALCULATE NEW { fromAccountIdBalance, toAccountIdBalance }
+		fromAccountIdBalance = fromAccountIdBalance - fromAccountIdAmount;
+		toAccountIdBalance = toAccountIdBalance + fromAccountIdAmount;
+		
+		// UPDATE BALANCE { fromAccountId, toAccountId }
+		this.updateBalance(fromAccountId, fromAccountIdBalance);
+		this.updateBalance(toAccountId, toAccountIdBalance);
+		
+		// return sender's balance
+		return fromAccountIdBalance;
 	}
 
 	// ACCOUNT CREATION

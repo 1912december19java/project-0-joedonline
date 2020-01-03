@@ -48,8 +48,8 @@ public final class Actions {
 		return "SELECT COUNT(*) FROM accounts";
 	}
 	
-	static String GET_BALANCE(String customerId) {
-		return "SELECT balance FROM accounts WHERE customer_id = '" + customerId + "'";
+	static String GET_BALANCE(String accountId) {
+		return "SELECT balance FROM accounts WHERE account_id = '" + accountId + "'";
 	}
 	
 	static String UPDATE_BALANCE(String accountId, Double newBalance) {

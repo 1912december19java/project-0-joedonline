@@ -6,5 +6,6 @@ public interface DAOAccountQueries{
 	Double withdrawMoney(String id, Double amount);	
 	Double updateBalance(String id, Double newBalance);
 	Double depositMoney(String id, Double amount);
+	Double transferMoney(String fromId, String toId, Double fromAmount);
 	
 }
