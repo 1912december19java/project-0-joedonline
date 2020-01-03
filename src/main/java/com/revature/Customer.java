@@ -2,18 +2,17 @@ package com.revature;
 
 public class Customer {
 
-	private Integer customerId;
+	private String customerId;
 	private String firstName;
 	private String lastName;
 	private String city;
 	private String state;
-	private String date;
 	
-	public Integer getCustomerId() {
+	public String getCustomerId() {
 		return customerId;
 	}
 	
-	public void setCustomerId(Integer customerId) {
+	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
 	
@@ -49,18 +48,10 @@ public class Customer {
 		this.state = state;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", city="
-				+ city + ", state=" + state + ", date=" + date + "]";
+				+ city + ", state=" + state + "]";
 	}
 	
 }

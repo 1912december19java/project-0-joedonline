@@ -22,14 +22,14 @@ SELECT * FROM customers;
 
 SELECT count(*) FROM customers;
 
-INSERT INTO customers (customer_id, firstname, lastname, city, state, balance)
-	VALUES (21, 'Mickey', 'Mouse', 'Orlando', 'Florida', 111.11);
+INSERT INTO customers (customer_id, firstname, lastname, city, state)
+	VALUES ('CID-10001', 'Mickey', 'Mouse', 'Orlando', 'Florida');
 
-INSERT INTO customers (customer_id, firstname, lastname, city, state, balance)
-	VALUES (22, 'Minnie', 'Mouse', 'Orlando', 'Florida', 222.22);
+INSERT INTO customers (customer_id, firstname, lastname, city, state)
+	VALUES ('CID-10002', 'Minnie', 'Mouse', 'Orlando', 'Florida');
 
-INSERT INTO customers (customer_id, firstname, lastname, city, state, balance)
-	VALUES (23, 'Donald', 'Duck', 'Orlando', 'Florida', 333.33);
+INSERT INTO customers (customer_id, firstname, lastname, city, state)
+	VALUES ('CID-10003', 'Donald', 'Duck', 'Orlando', 'Florida');
 
 DELETE FROM customers WHERE customer_id = 23;
 
@@ -69,9 +69,11 @@ create table users (
 
 DROP TABLE users;
 
-INSERT INTO users (username, pw, emailaddress, customer_id) VALUES ('mickeymouse', 'password', 'mickey.mouse@disneyemail.fake', 21);
+INSERT INTO users (username, pw, emailaddress, customer_id) VALUES ('mickeymouse', 'password', 'mickey.mouse@disneyemail.fake', 'CID-10001');
 
-DELETE FROM users WHERE customer_id = 21;
+SELECT * FROM users WHERE customer_id = 'CID-10002';
+
+DELETE FROM users WHERE customer_id = 'CID-10001';
 
 SELECT * FROM users;
 

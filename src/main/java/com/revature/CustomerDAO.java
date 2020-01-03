@@ -18,8 +18,8 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 	}
 	
 	@Override
-	public Integer getCustomerId(String firstName, String lastName, String city, String state) {
-		Integer id = 0;
+	public String getCustomerId(String firstName, String lastName, String city, String state) {
+		String customerId = "";
 		
 		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_USER_ID())) {
 			statement.setString(1, firstName);
@@ -28,14 +28,13 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 			statement.setString(4, state);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				id = resultSet.getInt(1);
+				customerId = resultSet.getString(1);
 			}
-			System.out.println(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return id;
+		return customerId;
 	}
 	
 	
@@ -103,12 +102,22 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 		return size;
 	}
 	
-	public Customer lookup(Integer id) {
-		try {
-			return this.findAll().get(id);
-		} catch (IndexOutOfBoundsException e) {
-			return null;
+	public Customer lookup(String customerId) {
+		Customer customer = new Customer();
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_CUSTOMER_BY_ID(customerId))) {
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				customer.setCustomerId(customerId);
+				customer.setFirstName(resultSet.getString(1));
+				customer.setLastName(resultSet.getString(2));
+				customer.setCity(resultSet.getString(3));
+				customer.setState(resultSet.getString(4));
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		return customer;
 	}
 	
 	public List<Customer> findAll() {
@@ -119,7 +128,7 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Customer c = new Customer();
-				c.setCustomerId(resultSet.getInt(1));
+				c.setCustomerId(resultSet.getString(1));
 				c.setFirstName(resultSet.getString(2));
 				c.setLastName(resultSet.getString(3));
 				c.setCity(resultSet.getString(4));

@@ -17,13 +17,13 @@ public class UserDAO implements DAOUsers {
 	public Integer registerUser(
 			String userName, 
 			String pw, 
-			String emailAddress, 
-			Integer id) {
+			String emailAddress,
+			String customerId) {
 		
 		Integer status = 0;
 		
-		if (!this.userExists(id)) {
-			try (PreparedStatement statement = this.connection.prepareStatement(Actions.REGISTER_USER(id))) {
+		if (!this.userExists(customerId)) {
+			try (PreparedStatement statement = this.connection.prepareStatement(Actions.REGISTER_USER(customerId))) {
 				statement.setString(1, userName);
 				statement.setString(2, pw);
 				statement.setString(3, emailAddress);
@@ -39,7 +39,7 @@ public class UserDAO implements DAOUsers {
 	}
 	
 	@Override
-	public void deleteUser(Integer id) {
+	public void deleteUser(String id) {
 		if (this.userExists(id)) {
 			try (PreparedStatement statement = this.connection.prepareStatement(Actions.DELETE_USER(id))) {
 				statement.execute();
@@ -50,9 +50,9 @@ public class UserDAO implements DAOUsers {
 	}
 
 	@Override
-	public Boolean userExists(Integer id) {
+	public Boolean userExists(String customerId) {
 		CustomerDAO customerDAO = new CustomerDAO(connection);
-		return customerDAO.lookup(id) != null ? true : false;
+		return customerDAO.lookup(customerId).getCustomerId() != null ? true : false;
 	}
 	
 }

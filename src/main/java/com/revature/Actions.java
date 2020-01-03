@@ -21,6 +21,10 @@ public final class Actions {
 		return "SELECT COUNT(*) from customers";
 	}
 	
+	static String GET_CUSTOMER_BY_ID(String customerId) {
+		return "SELECT * FROM users WHERE customer_id = '" + customerId + "'";
+	}
+	
 	static String GET_ALL_CUSTOMERS() {
 		return "SELECT * FROM customers";
 	}
@@ -60,12 +64,12 @@ public final class Actions {
 	/*
 	 * Users Actions
 	 */
-	static String REGISTER_USER(Integer id) {
-		return "INSERT INTO users (username, pw, emailaddress, customer_id) VALUES (?, ?, ?, " + id + ")";
+	static String REGISTER_USER(String customerId) {
+		return "INSERT INTO users (username, pw, emailaddress, customer_id) VALUES (?, ?, ?, '" + customerId + "')";
 	}
 	
-	static String DELETE_USER(Integer id) {
-		return "DELETE FROM users WHERE customer_id = " + id;
+	static String DELETE_USER(String customerId) {
+		return "DELETE FROM users WHERE customer_id = " + customerId;
 	}
 	
 	/*

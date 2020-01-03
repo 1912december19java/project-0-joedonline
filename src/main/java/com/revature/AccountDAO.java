@@ -58,14 +58,14 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	@Override
-	public Integer getCustomerId(String firstName, String lastName, String city, String state) {
-		Integer id = 0;
+	public String getCustomerId(String firstName, String lastName, String city, String state) {
+		String customerId;
 		
 		CustomerDAO customerDAO = new CustomerDAO(connection);
 		
-		id = customerDAO.getCustomerId(firstName, lastName, city, state);
+		customerId = customerDAO.getCustomerId(firstName, lastName, city, state);
 		
-		return id;
+		return customerId;
 	}
 
 	// ACCOUNT CREATION

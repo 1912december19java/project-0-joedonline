@@ -82,7 +82,7 @@ public class Main {
 //			updateProps.put("city", "Orlando");
 //			updateProps.put("state", "Florida");
 //			updateProps.put("balance", balance);
-////			customerDAO.update(updateProps);
+//			customerDAO.update(updateProps);
 			
 //			Double withdrawAmount = 200.50;
 //			System.out.println("[WITHDRAWING] $" + withdrawAmount + " ==> New Balance: $" + customerDAO.withdrawMoney(21, withdrawAmount));
@@ -97,24 +97,24 @@ public class Main {
 //			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
 //			
 //			System.out.println();
-//			
+
 //			UserDAO userDAO = new UserDAO(connection);
-//			Integer userIdMickeyMouse = customerDAO.getCustomerId("Minnie", "Mouse", "Orlando", "Florida");
-//			System.out.println("[getCustomerId] " + userIdMickeyMouse);
-//			
+//			String customerIdMickeyMouse = customerDAO.getCustomerId("Mickey", "Mouse", "Orlando", "Florida");
+//			System.out.println("[getCustomerId] " + customerIdMickeyMouse);
+			
 //			String username = "mickeymouse";
 //			String password = "password1";
 //			String email = "mickey.mouse@disneymail.fake";
-//			Integer registerStatus = userDAO.registerUser(username, password, email, userIdMickeyMouse);
+//			Integer registerStatus = userDAO.registerUser(username, password, email, customerIdMickeyMouse);
 //			switch (registerStatus) { 
 //			case 200 :
-//				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION SUCCESSFUL");
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION SUCCESSFUL");
 //				break;
 //			case 400 :
-//				System.out.println("[REGISTER STATUS] " + registerStatus + " USER REGISTRATION FAILED");
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION FAILED");
 //				break;
 //			default :
-//				System.out.println("User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
 //			}
 		} catch (SQLException e) {
 			e.printStackTrace();
