@@ -7,7 +7,6 @@ public class Customer {
 	private String lastName;
 	private String city;
 	private String state;
-	private Double balance;
 	private String date;
 	
 	public Integer getCustomerId() {
@@ -49,14 +48,6 @@ public class Customer {
 	public void setState(String state) {
 		this.state = state;
 	}
-	
-	public Double getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
 
 	public String getDate() {
 		return date;
@@ -69,7 +60,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", city="
-				+ city + ", state=" + state + ", balance=" + balance + ", date=" + date + "]";
+				+ city + ", state=" + state + ", date=" + date + "]";
 	}
 	
 }

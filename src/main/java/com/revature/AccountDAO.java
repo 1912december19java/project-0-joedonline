@@ -15,12 +15,11 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	@Override
-	public Double viewBalance(Integer id) {
+	public Double viewBalance(String customerId) {
 		Double balance = 0.0;
 		
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(id))) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_BALANCE(customerId))) {
 			ResultSet resultSet = statement.executeQuery();
-			Customer c = new Customer();
 			while (resultSet.next()) {
 				balance = resultSet.getDouble(1);
 			}
@@ -32,26 +31,26 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	@Override
-	public Double withdrawMoney(Integer id, Double amount) {
-		Double balance = this.viewBalance(id);
+	public Double withdrawMoney(String customerId, Double amount) {
+		Double balance = this.viewBalance(customerId);
 		balance -= amount;
-		balance = this.updateBalance(id, balance);
+		balance = this.updateBalance(customerId, balance);
 		return balance;
 	}
 
 	@Override
-	public Double updateBalance(Integer id, Double newBalance) {
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(id, newBalance))) {
+	public Double updateBalance(String customerId, Double newBalance) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(customerId, newBalance))) {
 			statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return this.viewBalance(id);
+		return this.viewBalance(customerId);
 	}
 
 	@Override
-	public Double depositMoney(Integer id, Double amount) {
+	public Double depositMoney(String id, Double amount) {
 		Double balance = this.viewBalance(id);
 		balance += amount;
 		balance = this.updateBalance(id, balance);
@@ -76,7 +75,7 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	@Override
-	public void delete(String id, String str) {
+	public void delete(String customerId, String str) {
 		
 	}
 

@@ -2,9 +2,9 @@ package com.revature;
 
 public interface DAOAccountQueries{
 
-	Double viewBalance(Integer id);
-	Double withdrawMoney(Integer id, Double amount);	
-	Double updateBalance(Integer id, Double newBalance);
-	Double depositMoney(Integer id, Double amount);
+	Double viewBalance(String id);
+	Double withdrawMoney(String id, Double amount);	
+	Double updateBalance(String id, Double newBalance);
+	Double depositMoney(String id, Double amount);
 	
 }

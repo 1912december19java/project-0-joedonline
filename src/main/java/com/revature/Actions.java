@@ -40,12 +40,13 @@ public final class Actions {
 		return "SELECT COUNT(*) FROM accounts";
 	}
 	
-	static String GET_BALANCE(Integer id) {
-		return "SELECT balance FROM customers WHERE customer_id = " + id;
+	static String GET_BALANCE(String customerId) {
+//		return "SELECT balance FROM accounts WHERE customer_id = " + customerId;
+		return "SELECT balance FROM accounts WHERE customer_id = '" + customerId + "'";
 	}
 	
-	static String UPDATE_BALANCE(Integer id, Double newBalance) {
-		return "UPDATE customers SET balance = " + newBalance + " WHERE customer_id = " + id;
+	static String UPDATE_BALANCE(String customerId, Double newBalance) {
+		return "UPDATE accounts SET balance = " + newBalance + " WHERE customer_id = '" + customerId + "'";
 	}
 	
 	static String GET_USER_ID() {

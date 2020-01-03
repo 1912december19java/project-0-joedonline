@@ -124,7 +124,6 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 				c.setLastName(resultSet.getString(3));
 				c.setCity(resultSet.getString(4));
 				c.setState(resultSet.getString(5));
-				c.setBalance(resultSet.getDouble(6));
 				customers.add(c);
 			}
 		} catch (SQLException e) {

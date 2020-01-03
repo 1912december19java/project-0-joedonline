@@ -48,26 +48,30 @@ public class Main {
 			
 //			customerDAO.delete(22, "Minnie");
 			
-//			AccountDAO accountDAO = new AccountDAO(connection);
+			AccountDAO accountDAO = new AccountDAO(connection);
 //			Properties accountProps = new Properties();
 //			accountProps.put("accountType", "checking");
 //			accountProps.put("customerId", "CID-10002");
 //			accountDAO.addNew(accountProps);
 			
+//			System.out.println(accountDAO.viewBalance("CID-10001"));
+//			System.out.println(accountDAO.withdrawMoney("CID-10001", 20.10));
+//			System.out.println(accountDAO.depositMoney("CID-10002", 264.70));
 			
-			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
-			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");
-			System.out.println("========    =========    ==========    ========    ======    ===========");
-			transactionsDAO.getAllTransactions().forEach(
-				(transaction) -> System.out.println(
-					transaction.getTransactionId() + "    " +
-					transaction.getAccountType() + "     " +
-					transaction.getTransactionDate() + "    " +
-					transaction.getTransactionTime() + "    " +
-					transaction.getTransactionAmount() + "     " +
-					transaction.getCustomerId()
-				)
-			);
+			
+//			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
+//			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");
+//			System.out.println("========    =========    ==========    ========    ======    ===========");
+//			transactionsDAO.getAllTransactions().forEach(
+//				(transaction) -> System.out.println(
+//					transaction.getTransactionId() + "    " +
+//					transaction.getAccountType() + "     " +
+//					transaction.getTransactionDate() + "    " +
+//					transaction.getTransactionTime() + "    " +
+//					transaction.getTransactionAmount() + "     " +
+//					transaction.getCustomerId()
+//				)
+//			);
 			
 			
 //			Properties updateProps = new Properties();
