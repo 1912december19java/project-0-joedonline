@@ -33,7 +33,11 @@ public final class Actions {
 	 * Account Actions
 	 */
 	static String ADD_NEW_ACCOUNT() {
-		return "INSERT INTO accounts (account_type, balance, customer_id)  VALUES (?, ?, ?)";
+		return "INSERT INTO accounts (account_id, account_type, balance, customer_id)  VALUES (?, ?, ?, ?)";
+	}
+	
+	static String ACCOUNT_ID_EXISTS(String accountId) {
+		return "SELECT * FROM accounts WHERE account_id = '" + accountId + "'";
 	}
 	
 	static String DELETE_ACCOUNT(String customer_id) {
@@ -45,12 +49,11 @@ public final class Actions {
 	}
 	
 	static String GET_BALANCE(String customerId) {
-//		return "SELECT balance FROM accounts WHERE customer_id = " + customerId;
 		return "SELECT balance FROM accounts WHERE customer_id = '" + customerId + "'";
 	}
 	
-	static String UPDATE_BALANCE(String customerId, Double newBalance) {
-		return "UPDATE accounts SET balance = " + newBalance + " WHERE customer_id = '" + customerId + "'";
+	static String UPDATE_BALANCE(String accountId, Double newBalance) {
+		return "UPDATE accounts SET balance = " + newBalance + " WHERE account_id = '" + accountId + "'";
 	}
 	
 	static String GET_USER_ID() {

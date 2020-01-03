@@ -49,10 +49,18 @@ public class Main {
 //			customerDAO.delete(22, "Minnie");
 			
 			AccountDAO accountDAO = new AccountDAO(connection);
-//			Properties accountProps = new Properties();
-//			accountProps.put("accountType", "checking");
-//			accountProps.put("customerId", "CID-10002");
-//			accountDAO.addNew(accountProps);
+//			System.out.println(accountDAO.accountIdExists("ACCT-88888"));
+			Boolean accountExists = accountDAO.accountIdExists("ACCT-88888");
+			if (!accountExists) {
+				Properties accountProps = new Properties();
+				accountProps.put("accountId", "ACCT-88888");
+				accountProps.put("accountType", "checking");
+				accountProps.put("customerId", "CID-10002");
+				accountDAO.addNew(accountProps);
+				accountDAO.updateBalance("ACCT-88888", 3333.33);
+			} else {
+				System.out.println("Duplicate accounts not allowed");
+			}
 			
 //			System.out.println(accountDAO.viewBalance("CID-10001"));
 //			System.out.println(accountDAO.withdrawMoney("CID-10001", 20.10));

@@ -39,14 +39,14 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	@Override
-	public Double updateBalance(String customerId, Double newBalance) {
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(customerId, newBalance))) {
+	public Double updateBalance(String accountId, Double newBalance) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.UPDATE_BALANCE(accountId, newBalance))) {
 			statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return this.viewBalance(customerId);
+		return this.viewBalance(accountId);
 	}
 
 	@Override
@@ -80,16 +80,32 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 	}
 
 	public void addNew(Properties props) {
+		String accountId = props.getProperty("accountId");
 		String customerId = props.getProperty("customerId");
 		String accountType = props.getProperty("accountType");
 		try (PreparedStatement statement = this.connection.prepareStatement(Actions.ADD_NEW_ACCOUNT())) {
-			statement.setString(1, accountType);
-			statement.setDouble(2, 0.0);
-			statement.setString(3, customerId);
+			statement.setString(1, accountId);
+			statement.setString(2, accountType);
+			statement.setDouble(3, 0.0);
+			statement.setString(4, customerId);
 			statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Boolean accountIdExists(String accountId) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.ACCOUNT_ID_EXISTS(accountId))) {
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				if (resultSet.getString(1) != null) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	@Override
