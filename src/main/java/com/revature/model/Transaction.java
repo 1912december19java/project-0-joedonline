@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

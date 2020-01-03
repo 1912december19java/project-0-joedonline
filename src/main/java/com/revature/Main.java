@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.revature.model.AccountDAO;
+import com.revature.model.ConnectionManager;
+import com.revature.model.CustomerDAO;
+import com.revature.model.UserDAO;
+
 /**
  * Create an instance of your controller and launch your application.
  *
@@ -39,28 +44,31 @@ public class Main {
 			
 //			System.out.println(customerDAO.lookup(0));
 			
-//			Properties customerProps = new Properties();
-//			customerProps.put("firstName", "Daisy");
-//			customerProps.put("lastName", "Duck");
-//			customerProps.put("city", "Hollywood");
-//			customerProps.put("state", "Ohio");
-//			customerDAO.addNew(customerProps);
+			Properties newCustomerProps = new Properties();
+			newCustomerProps.put("firstName", "Daffy");
+			newCustomerProps.put("lastName", "Duck");
+			newCustomerProps.put("city", "Chapel Hill");
+			newCustomerProps.put("state", "North Carolina");
+			customerDAO.addNew(newCustomerProps);
 			
 //			customerDAO.delete(22, "Minnie");
 			
 			AccountDAO accountDAO = new AccountDAO(connection);
 //			System.out.println(accountDAO.accountIdExists("ACCT-88888"));
-//			Boolean accountExists = accountDAO.accountIdExists("ACCT-88888");
-//			if (!accountExists) {
-//				Properties accountProps = new Properties();
-//				accountProps.put("accountId", "ACCT-88888");
-//				accountProps.put("accountType", "checking");
-//				accountProps.put("customerId", "CID-10002");
-//				accountDAO.addNew(accountProps);
-//				accountDAO.updateBalance("ACCT-88888", 3333.33);
-//			} else {
-//				System.out.println("Duplicate accounts not allowed");
-//			}
+			String newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
+			while (accountDAO.accountIdExists(newAcctNumber)) {
+				newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
+			}
+			if (!accountDAO.accountIdExists(newAcctNumber)) {
+				Properties accountProps = new Properties();
+				accountProps.put("accountId", newAcctNumber);
+				accountProps.put("accountType", "checking");
+				accountProps.put("customerId", customerDAO.getCustomerId("Daffy", "Duck", "Chapel Hill", "North Carolina"));
+				accountDAO.addNew(accountProps);
+				accountDAO.updateBalance(newAcctNumber, 4444.44);
+			} else {
+				System.out.println("Exception: Account already exists");
+			}
 //			Double newBalance = accountDAO.transferMoney("ACCT-88888", "ACCT-10001", 888.88);
 //			System.out.println("[TRANSFER] " + 888.88 + " [newBalance]" + newBalance);
 			
@@ -108,25 +116,25 @@ public class Main {
 //			System.out.println("[TABLE SIZE] ==> " + customerDAO.size());
 //			
 //			System.out.println();
-
-			UserDAO userDAO = new UserDAO(connection);
-			String customerIdMickeyMouse = customerDAO.getCustomerId("Mickey", "Mouse", "Orlando", "Florida");
-			System.out.println("[getCustomerId] " + customerIdMickeyMouse);
 			
-			String username = "mickeymouse";
-			String password = "password1";
-			String email = "mickey.mouse@disneymail.fake";
-			Integer registerStatus = userDAO.registerUser(username, password, email, customerIdMickeyMouse);
-			switch (registerStatus) { 
-			case 200 :
-				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION SUCCESSFUL");
-				break;
-			case 400 :
-				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION FAILED");
-				break;
-			default :
-				System.out.println("[REGISTER STATUS] " + registerStatus + ": User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
-			}
+//			UserDAO userDAO = new UserDAO(connection);
+//			String customerIdMickeyMouse = customerDAO.getCustomerId("Mickey", "Mouse", "Orlando", "Florida");
+//			System.out.println("[getCustomerId] " + customerIdMickeyMouse);
+//			
+//			String username = "mickeymouse";
+//			String password = "password1";
+//			String email = "mickey.mouse@disneymail.fake";
+//			Integer registerStatus = userDAO.registerUser(username, password, email, customerIdMickeyMouse);
+//			switch (registerStatus) { 
+//			case 200 :
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION SUCCESSFUL");
+//				break;
+//			case 400 :
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION FAILED");
+//				break;
+//			default :
+//				System.out.println("[REGISTER STATUS] " + registerStatus + ": User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
+//			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

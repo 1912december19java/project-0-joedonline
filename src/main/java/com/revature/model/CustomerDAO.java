@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import com.revature.RandomGenerator;
 
 
 public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
