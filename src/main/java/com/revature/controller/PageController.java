@@ -53,6 +53,7 @@ public final class PageController {
 				System.out.println(firstName + " " + lastName + "'s account created");
 				getCustomer(connection, firstName, lastName, city, state);
 				homePage.body();
+				sc.nextLine();
 				break;
 			case "2" : // Login
 //				loginPage.enterUserName();
@@ -62,6 +63,7 @@ public final class PageController {
 				System.out.println("Enter password:");
 				password = sc.nextLine();
 				isLoggedIn = requestLogin(connection, username, password);
+				sc.nextLine();
 				break;
 			case "exit" : 
 				System.out.println("You are logged out");
@@ -79,18 +81,21 @@ public final class PageController {
 			case "1" :
 				System.out.println("Fetching balance...");
 				System.out.println("[Your Balance is] $" + viewBalance(connection, "ACCT-90111"));
+				sc.nextLine();
 				break;
 			case "2" :
 				System.out.println("How much?");
 				Double withdrawAmount = sc.nextDouble();
 				System.out.println("Withdrawing money...");
 				System.out.println("[Withdrew] " + withdrawAmount + " [New Balance] " + withdrawMoney(connection, "ACCT-90111", withdrawAmount));
+				sc.nextLine();
 				break;
 			case "3" :
 				System.out.println("How much?");
 				Double depositAmount = sc.nextDouble();
 				System.out.println("Depositing money...");
 				System.out.println("[DEPOSITED] " + depositAmount + "[New Balance] " + depositMoney(connection, "ACCT-90111", depositAmount));
+				sc.nextLine();
 				break;
 			case "4" :
 				System.out.println("Fetching transactions...");
@@ -108,6 +113,7 @@ public final class PageController {
 						transaction.getCustomerId()
 					)
 				);
+				sc.nextLine();
 				break;
 			case "5" :
 				System.out.println("Enter receiving account id: ");
@@ -117,6 +123,7 @@ public final class PageController {
 				System.out.println();
 				System.out.println("Transferring money...");
 				System.out.println("[TRANSFER SUCCESSFUL] New Balance: $" + transferMoney(connection, "ACCT-90111", receivingAccountId, transferAmount));
+				sc.nextLine();
 				break;
 			case "exit" :
 				System.out.println("You are logged out");
