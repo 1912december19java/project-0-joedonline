@@ -44,31 +44,34 @@ public class Main {
 			
 //			System.out.println(customerDAO.lookup(0));
 			
-			Properties newCustomerProps = new Properties();
-			newCustomerProps.put("firstName", "Daffy");
-			newCustomerProps.put("lastName", "Duck");
-			newCustomerProps.put("city", "Chapel Hill");
-			newCustomerProps.put("state", "North Carolina");
-			customerDAO.addNew(newCustomerProps);
 			
-//			customerDAO.delete(22, "Minnie");
+			/*
+			 * CONTROLLER - CREATE NEW ACCOUNT / REGISTER
+			 */
+//			Properties newCustomerProps = new Properties();
+//			newCustomerProps.put("firstName", "Daffy");
+//			newCustomerProps.put("lastName", "Duck");
+//			newCustomerProps.put("city", "Chapel Hill");
+//			newCustomerProps.put("state", "North Carolina");
+//			customerDAO.addNew(newCustomerProps);
+//			
+//			AccountDAO accountDAO = new AccountDAO(connection);
+//			String newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
+//			while (accountDAO.accountIdExists(newAcctNumber)) {
+//				newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
+//			}
+//			if (!accountDAO.accountIdExists(newAcctNumber)) {
+//				Properties accountProps = new Properties();
+//				accountProps.put("accountId", newAcctNumber);
+//				accountProps.put("accountType", "checking");
+//				accountProps.put("customerId", customerDAO.getCustomerId("Daffy", "Duck", "Chapel Hill", "North Carolina"));
+//				accountDAO.addNew(accountProps);
+//				accountDAO.updateBalance(newAcctNumber, 4444.44);
+//			} else {
+//				System.out.println("Exception: Account already exists");
+//			}
+			// END CONTROLLER - CREATE NEW ACCOUNT / REGISTER
 			
-			AccountDAO accountDAO = new AccountDAO(connection);
-//			System.out.println(accountDAO.accountIdExists("ACCT-88888"));
-			String newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
-			while (accountDAO.accountIdExists(newAcctNumber)) {
-				newAcctNumber = "ACCT-" + RandomGenerator.getNumbers(5);
-			}
-			if (!accountDAO.accountIdExists(newAcctNumber)) {
-				Properties accountProps = new Properties();
-				accountProps.put("accountId", newAcctNumber);
-				accountProps.put("accountType", "checking");
-				accountProps.put("customerId", customerDAO.getCustomerId("Daffy", "Duck", "Chapel Hill", "North Carolina"));
-				accountDAO.addNew(accountProps);
-				accountDAO.updateBalance(newAcctNumber, 4444.44);
-			} else {
-				System.out.println("Exception: Account already exists");
-			}
 //			Double newBalance = accountDAO.transferMoney("ACCT-88888", "ACCT-10001", 888.88);
 //			System.out.println("[TRANSFER] " + 888.88 + " [newBalance]" + newBalance);
 			
