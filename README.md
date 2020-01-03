@@ -1,7 +1,5 @@
 # Banking Project
-project0banking
-postgres
-password
+
 ## Presentations (Monday ~ Wednesday of Week 3)
 * Presentations will start when QC team joins.
 
