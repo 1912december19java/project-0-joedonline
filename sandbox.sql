@@ -50,6 +50,8 @@ create table accounts (
 );
 
 INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('checking', 200.02, 'CID-10001');
+INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('savings', 2255.26, 'CID-10001');
+INSERT INTO accounts (account_type, balance, customer_id)  VALUES ('moneymarket', 951065.22, 'CID-10001');
 DELETE FROM accounts WHERE customer_id = 'CID-10000';
 UPDATE accounts SET balance = 500.33 WHERE customer_id = 'CID-10001';
 UPDATE accounts SET balance = 888.88 WHERE customer_id = 'CID-10002';

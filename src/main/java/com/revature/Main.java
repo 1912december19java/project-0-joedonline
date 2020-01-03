@@ -40,10 +40,10 @@ public class Main {
 //			System.out.println(customerDAO.lookup(0));
 			
 //			Properties customerProps = new Properties();
-//			customerProps.put("firstName", "Mickey");
-//			customerProps.put("lastName", "Mouse");
-//			customerProps.put("city", "Orlando");
-//			customerProps.put("state", "Florida");
+//			customerProps.put("firstName", "Daisy");
+//			customerProps.put("lastName", "Duck");
+//			customerProps.put("city", "Hollywood");
+//			customerProps.put("state", "Ohio");
 //			customerDAO.addNew(customerProps);
 			
 //			customerDAO.delete(22, "Minnie");
@@ -58,6 +58,7 @@ public class Main {
 //			System.out.println(accountDAO.withdrawMoney("CID-10001", 20.10));
 //			System.out.println(accountDAO.depositMoney("CID-10002", 264.70));
 			
+//			System.out.println(RandomGenerator.getNumbers(5));
 			
 //			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
 //			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");

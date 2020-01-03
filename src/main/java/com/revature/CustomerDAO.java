@@ -57,13 +57,13 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 	}
 
 	public void addNew(Properties props) {
-		Integer customerId = this.size() + 1; // REPLACE WITH RANDOM GENERATOR
+		String customerId = "CID-" + RandomGenerator.getNumbers(5);
 		String firstName = props.getProperty("firstName");
 		String lastName = props.getProperty("lastName");
 		String city = props.getProperty("city");
 		String state = props.getProperty("state");
 		try (PreparedStatement statement = this.connection.prepareStatement(Actions.ADD_NEW_CUSTOMER())) {
-			statement.setInt(1, customerId);
+			statement.setString(1, customerId);
 			statement.setString(2, firstName);
 			statement.setString(3, lastName);
 			statement.setString(4, city);
