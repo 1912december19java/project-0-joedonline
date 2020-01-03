@@ -31,7 +31,7 @@ INSERT INTO customers (customer_id, firstname, lastname, city, state)
 INSERT INTO customers (customer_id, firstname, lastname, city, state)
 	VALUES ('CID-10003', 'Donald', 'Duck', 'Orlando', 'Florida');
 
-DELETE FROM customers WHERE customer_id = 23;
+DELETE FROM customers WHERE customer_id = 'CID-90293';
 
 UPDATE customers SET firstname = 'Minnie' WHERE customer_id = 21;
 
@@ -56,10 +56,14 @@ INSERT INTO accounts (account_id, account_type, balance, customer_id)  VALUES ('
 DELETE FROM accounts WHERE customer_id = 'CID-10000';
 
 UPDATE accounts SET balance = 500.33 WHERE account_id = 'ACCT-10001';
-UPDATE accounts SET balance = 970765.22 WHERE account_id = 'ACCT-90111';
+UPDATE accounts SET balance = 10000.53 WHERE account_id = 'ACCT-10002';
+UPDATE accounts SET balance = 970765.22 WHERE account_id = 'ACCT-88888';
+UPDATE accounts SET balance = 23329.35 WHERE account_id = 'ACCT-90111';
 
 UPDATE accounts SET balance = 500.33 WHERE customer_id = 'CID-10001';
 UPDATE accounts SET balance = 888.88 WHERE customer_id = 'CID-10002';
+
+DELETE FROM accounts WHERE account_id = 'ACCT-91208';
 
 SELECT * FROM accounts WHERE account_id = 'ACCT-88888';
 
