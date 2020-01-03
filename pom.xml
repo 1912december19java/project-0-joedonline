@@ -14,6 +14,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- PostgreSQL -->
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
