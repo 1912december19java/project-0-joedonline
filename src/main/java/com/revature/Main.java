@@ -61,8 +61,8 @@ public class Main {
 //			} else {
 //				System.out.println("Duplicate accounts not allowed");
 //			}
-			Double newBalance = accountDAO.transferMoney("ACCT-88888", "ACCT-10001", 888.88);
-			System.out.println("[TRANSFER] " + 888.88 + " [newBalance]" + newBalance);
+//			Double newBalance = accountDAO.transferMoney("ACCT-88888", "ACCT-10001", 888.88);
+//			System.out.println("[TRANSFER] " + 888.88 + " [newBalance]" + newBalance);
 			
 //			System.out.println(accountDAO.viewBalance("CID-10001"));
 //			System.out.println(accountDAO.withdrawMoney("CID-10001", 20.10));
@@ -109,24 +109,24 @@ public class Main {
 //			
 //			System.out.println();
 
-//			UserDAO userDAO = new UserDAO(connection);
-//			String customerIdMickeyMouse = customerDAO.getCustomerId("Mickey", "Mouse", "Orlando", "Florida");
-//			System.out.println("[getCustomerId] " + customerIdMickeyMouse);
+			UserDAO userDAO = new UserDAO(connection);
+			String customerIdMickeyMouse = customerDAO.getCustomerId("Mickey", "Mouse", "Orlando", "Florida");
+			System.out.println("[getCustomerId] " + customerIdMickeyMouse);
 			
-//			String username = "mickeymouse";
-//			String password = "password1";
-//			String email = "mickey.mouse@disneymail.fake";
-//			Integer registerStatus = userDAO.registerUser(username, password, email, customerIdMickeyMouse);
-//			switch (registerStatus) { 
-//			case 200 :
-//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION SUCCESSFUL");
-//				break;
-//			case 400 :
-//				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION FAILED");
-//				break;
-//			default :
-//				System.out.println("[REGISTER STATUS] " + registerStatus + ": User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
-//			}
+			String username = "mickeymouse";
+			String password = "password1";
+			String email = "mickey.mouse@disneymail.fake";
+			Integer registerStatus = userDAO.registerUser(username, password, email, customerIdMickeyMouse);
+			switch (registerStatus) { 
+			case 200 :
+				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION SUCCESSFUL");
+				break;
+			case 400 :
+				System.out.println("[REGISTER STATUS] " + registerStatus + ": USER REGISTRATION FAILED");
+				break;
+			default :
+				System.out.println("[REGISTER STATUS] " + registerStatus + ": User Registration Exception: Either the user is already registered or doesn't have an account open, or something else went wrong");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
