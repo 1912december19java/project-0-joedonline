@@ -17,7 +17,7 @@ public class AdminPage extends Page {
 		System.out.println("[3] Deposit Money");
 		System.out.println("[4] View Transactions");
 		System.out.println("[5] Transfer Money");
-		System.out.println("[or type 'logout']");
+		System.out.println("[or type 'exit']");
 	}
 	
 }

@@ -13,7 +13,7 @@ public class Home extends Page {
 		System.out.println();
 		System.out.println("[1] Open a new account");
 		System.out.println("[2] Login (Existing customers)");
-		System.out.println("[or type 'logout']");
+		System.out.println("[or type 'exit']");
 	}
 	
 }

@@ -13,7 +13,6 @@ public class ConnectionManager {
 	
 	
 	public ConnectionManager(String host, String dbName, String username, String pw) {
-		System.out.println("[ConnectionManager] called.");
 		
 		String protocol = "jdbc:postgresql";
 		this.url = protocol + "://" + host + ":5432/" + dbName;

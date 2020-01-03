@@ -63,7 +63,8 @@ public final class PageController {
 				password = sc.nextLine();
 				isLoggedIn = requestLogin(connection, username, password);
 				break;
-			case "logout" : 
+			case "exit" : 
+				System.out.println("You are logged out");
 				return;
 			default : 
 				throw new BadEntryException();
@@ -117,7 +118,7 @@ public final class PageController {
 				System.out.println("Transferring money...");
 				System.out.println("[TRANSFER SUCCESSFUL] New Balance: $" + transferMoney(connection, "ACCT-90111", receivingAccountId, transferAmount));
 				break;
-			case "logout" :
+			case "exit" :
 				System.out.println("You are logged out");
 				isLoggedIn = false;
 				break;
@@ -126,6 +127,7 @@ public final class PageController {
 			}
 		}
 		
+		System.out.println("Goodbye!");
 		sc.close();
 		
 	}
