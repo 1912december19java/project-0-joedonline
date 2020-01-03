@@ -35,14 +35,6 @@ public class Main {
 			Connection connection = connectionManager.getConnection();
 			CustomerDAO customerDAO = new CustomerDAO(connection);
 			
-			
-			AccountDAO accountDAO = new AccountDAO(connection);
-			Properties accountProps = new Properties();
-			accountProps.put("accountType", "checking");
-			accountProps.put("customerId", "CID-10002");
-			accountDAO.addNew(accountProps);
-			
-			
 //			customerDAO.findAll().forEach(System.out::println);
 			
 //			System.out.println(customerDAO.lookup(0));
@@ -55,6 +47,28 @@ public class Main {
 //			customerDAO.addNew(customerProps);
 			
 //			customerDAO.delete(22, "Minnie");
+			
+//			AccountDAO accountDAO = new AccountDAO(connection);
+//			Properties accountProps = new Properties();
+//			accountProps.put("accountType", "checking");
+//			accountProps.put("customerId", "CID-10002");
+//			accountDAO.addNew(accountProps);
+			
+			
+			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
+			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");
+			System.out.println("========    =========    ==========    ========    ======    ===========");
+			transactionsDAO.getAllTransactions().forEach(
+				(transaction) -> System.out.println(
+					transaction.getTransactionId() + "    " +
+					transaction.getAccountType() + "     " +
+					transaction.getTransactionDate() + "    " +
+					transaction.getTransactionTime() + "    " +
+					transaction.getTransactionAmount() + "     " +
+					transaction.getCustomerId()
+				)
+			);
+			
 			
 //			Properties updateProps = new Properties();
 //			Double balance = 210.21;

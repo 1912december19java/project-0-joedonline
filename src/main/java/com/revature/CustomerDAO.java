@@ -115,7 +115,7 @@ public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {
 		List<Customer> customers = new ArrayList<Customer>();
 //		Map<Integer, Customer> customers = new HashMap<Integer, Customer>(); 
 		
-		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_ALL());) {
+		try (PreparedStatement statement = this.connection.prepareStatement(Actions.GET_ALL_CUSTOMERS())) {
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Customer c = new Customer();

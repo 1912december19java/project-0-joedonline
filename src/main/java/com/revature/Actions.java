@@ -21,7 +21,7 @@ public final class Actions {
 		return "SELECT COUNT(*) from customers";
 	}
 	
-	static String GET_ALL() {
+	static String GET_ALL_CUSTOMERS() {
 		return "SELECT * FROM customers";
 	}
 	
@@ -65,6 +65,13 @@ public final class Actions {
 	
 	static String DELETE_USER(Integer id) {
 		return "DELETE FROM users WHERE customer_id = " + id;
+	}
+	
+	/*
+	 * Transactions Actions
+	 */
+	static String GET_ALL_TRANSACTIONS() {
+		return "SELECT * FROM transactions";
 	}
 	
 }
