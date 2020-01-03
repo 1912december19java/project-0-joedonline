@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.utilities;
 
 import java.util.Random;
 

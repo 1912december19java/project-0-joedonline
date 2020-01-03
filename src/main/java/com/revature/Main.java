@@ -7,7 +7,9 @@ import java.util.Properties;
 import com.revature.model.AccountDAO;
 import com.revature.model.ConnectionManager;
 import com.revature.model.CustomerDAO;
+import com.revature.model.TrasactionDAO;
 import com.revature.model.UserDAO;
+import com.revature.utilities.RandomGenerator;
 
 /**
  * Create an instance of your controller and launch your application.
@@ -49,10 +51,10 @@ public class Main {
 			 * CONTROLLER - CREATE NEW ACCOUNT / REGISTER
 			 */
 //			Properties newCustomerProps = new Properties();
-//			newCustomerProps.put("firstName", "Daffy");
-//			newCustomerProps.put("lastName", "Duck");
-//			newCustomerProps.put("city", "Chapel Hill");
-//			newCustomerProps.put("state", "North Carolina");
+//			newCustomerProps.put("firstName", "Bugs");
+//			newCustomerProps.put("lastName", "Bunny");
+//			newCustomerProps.put("city", "Austin");
+//			newCustomerProps.put("state", "Texas");
 //			customerDAO.addNew(newCustomerProps);
 //			
 //			AccountDAO accountDAO = new AccountDAO(connection);
@@ -64,7 +66,7 @@ public class Main {
 //				Properties accountProps = new Properties();
 //				accountProps.put("accountId", newAcctNumber);
 //				accountProps.put("accountType", "checking");
-//				accountProps.put("customerId", customerDAO.getCustomerId("Daffy", "Duck", "Chapel Hill", "North Carolina"));
+//				accountProps.put("customerId", customerDAO.getCustomerId("Bugs", "Bunny", "Austin", "Texas"));
 //				accountDAO.addNew(accountProps);
 //				accountDAO.updateBalance(newAcctNumber, 4444.44);
 //			} else {
@@ -81,19 +83,24 @@ public class Main {
 			
 //			System.out.println(RandomGenerator.getNumbers(5));
 			
-//			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
-//			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");
-//			System.out.println("========    =========    ==========    ========    ======    ===========");
-//			transactionsDAO.getAllTransactions().forEach(
-//				(transaction) -> System.out.println(
-//					transaction.getTransactionId() + "    " +
-//					transaction.getAccountType() + "     " +
-//					transaction.getTransactionDate() + "    " +
-//					transaction.getTransactionTime() + "    " +
-//					transaction.getTransactionAmount() + "     " +
-//					transaction.getCustomerId()
-//				)
-//			);
+			
+			/*
+			 * CONTROLLER - GET ALL TRANSACTIONS
+			 */
+			TrasactionDAO transactionsDAO = new TrasactionDAO(connection);
+			System.out.println("Trans ID    Acct Type    Date          Time        Amount    Customer ID");
+			System.out.println("========    =========    ==========    ========    ======    ===========");
+			transactionsDAO.getAllTransactions().forEach(
+				(transaction) -> System.out.println(
+					transaction.getTransactionId() + "    " +
+					transaction.getAccountType() + "     " +
+					transaction.getTransactionDate() + "    " +
+					transaction.getTransactionTime() + "    " +
+					transaction.getTransactionAmount() + "     " +
+					transaction.getCustomerId()
+				)
+			);
+			// END CONTROLLER - GET ALL TRANSACTIONS
 			
 			
 //			Properties updateProps = new Properties();

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.utilities.RandomGenerator;
+
 public class TrasactionDAO implements DAOTransactions {
 
 	Connection connection;
@@ -15,6 +17,18 @@ public class TrasactionDAO implements DAOTransactions {
 		this.connection = connection;
 	}
 
+	@Override
+	public void recordTransaction(String accountType, Double amount, String customerId) {
+		CustomerDAO customerDAO = new CustomerDAO(connection);
+		
+		// Generate Transaction Number
+		String transactionId = "TR-" + RandomGenerator.getNumbers(5);
+		
+		// Get Account ID
+		AccountDAO accountDAO = new AccountDAO(connection);
+//		accountDAO.getAccountId(firstName, lastName, city, state);
+	}
+	
 	@Override
 	public List<Transaction> getAllTransactions() {
 		ArrayList<Transaction> transactions = new ArrayList<Transaction>();

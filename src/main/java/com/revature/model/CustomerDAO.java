@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.revature.RandomGenerator;
+import com.revature.utilities.RandomGenerator;
 
 
 public class CustomerDAO implements DAOCreateUpdateDelete, DAOCustomer {

@@ -143,5 +143,10 @@ public class AccountDAO implements DAOAccountQueries, DAOCustomer, DAOCreateUpda
 		
 		return size;
 	}
+
+	@Override
+	public String getAccountId(String firstName, String lastName, String city, String state) {
+		return this.getCustomerId(firstName, lastName, city, state);
+	}
 	
 }
